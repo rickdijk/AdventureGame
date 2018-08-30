@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AdventureGame
 {
@@ -64,9 +65,9 @@ namespace AdventureGame
         private Point GetRandomLocation(Random random)
         {
             return new Point(boundaries.Left +
-            random.Next(boundaries.Right / 10 - boundaries.Left / 10) * 10,
-            boundaries.Top +
-            random.Next(boundaries.Bottom / 10 - boundaries.Top / 10) * 10);
+                random.Next(boundaries.Right / 10 - boundaries.Left / 10) * 10,
+                    boundaries.Top +
+                random.Next(boundaries.Bottom / 10 - boundaries.Top / 10) * 10);
         }
 
         public void NewLevel(Random random)
@@ -80,6 +81,61 @@ namespace AdventureGame
                     };
                     WeaponInRoom = new Sword(this, GetRandomLocation(random));
                     break;
+                case 2:
+                    Enemies = new List<Enemy>() {
+                        new Ghost(this, GetRandomLocation(random)),
+                    };
+                    WeaponInRoom = new BluePotion(this, GetRandomLocation(random));
+                    break;
+                case 3:
+                    Enemies = new List<Enemy>() {
+                        new Ghoul(this, GetRandomLocation(random)),
+                    };
+                    WeaponInRoom = new Bow(this, GetRandomLocation(random));
+                    break;
+                case 4:
+                    Enemies = new List<Enemy>() {
+                        new Bat(this, GetRandomLocation(random)),
+                        new Ghost(this, GetRandomLocation(random)),
+                    };
+                    if (PlayerWeapons.Contains("Bow"))
+                        if (PlayerWeapons.Contains("BluePotion"))
+                            break;
+                        else
+                            WeaponInRoom = new BluePotion(this, GetRandomLocation(random));
+                    else
+                        WeaponInRoom = new Bow(this, GetRandomLocation(random));
+                    break;
+                case 5:
+                    Enemies = new List<Enemy>() {
+                        new Bat(this, GetRandomLocation(random)),
+                        new Ghoul(this, GetRandomLocation(random)),
+                    };
+                    WeaponInRoom = new RedPotion(this, GetRandomLocation(random));
+                    break;
+                case 6:
+                    Enemies = new List<Enemy>() {
+                        new Ghost(this, GetRandomLocation(random)),
+                        new Ghoul(this, GetRandomLocation(random)),
+                    };
+                    WeaponInRoom = new Mace(this, GetRandomLocation(random));
+                    break;
+                case 7:
+                    Enemies = new List<Enemy>() {
+                        new Bat(this, GetRandomLocation(random)),
+                        new Ghost(this, GetRandomLocation(random)),
+                        new Ghoul(this, GetRandomLocation(random)),
+                    };
+                    if (PlayerWeapons.Contains("Mace"))
+                        if (PlayerWeapons.Contains("RedPotion"))
+                            break;
+                        else
+                            WeaponInRoom = new RedPotion(this, GetRandomLocation(random));
+                    else
+                        WeaponInRoom = new Mace(this, GetRandomLocation(random));
+                    break;
+                case 8:
+                    Application.Exit();
             }
         }
     }
