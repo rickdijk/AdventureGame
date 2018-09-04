@@ -26,8 +26,7 @@ namespace AdventureGame
         public Game(Rectangle boundaries)
         {
             this.boundaries = boundaries;
-            player = new Player(this,
-            new Point(boundaries.Left + 10, boundaries.Top + 70));
+            player = new Player(this, new Point(boundaries.Left + 10, boundaries.Top + 70));
         }
 
         public void Move(Direction direction, Random random)
@@ -41,6 +40,7 @@ namespace AdventureGame
         {
             player.Equip(weaponName);
         }
+
         public bool CheckPlayerInventory(string weaponName)
         {
             return player.Weapons.Contains(weaponName);
@@ -50,6 +50,7 @@ namespace AdventureGame
         {
             player.Hit(maxDamage, random);
         }
+
         public void IncreasePlayerHealth(int health, Random random)
         {
             player.IncreaseHealth(health, random);
@@ -136,6 +137,7 @@ namespace AdventureGame
                     break;
                 case 8:
                     Application.Exit();
+                    break;
             }
         }
     }
