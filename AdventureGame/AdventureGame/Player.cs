@@ -65,7 +65,17 @@ namespace AdventureGame
 
         public void Attack(Direction direction, Random random)
         {
-            // Your code goes here
+            if (equippedWeapon.Equals(null))
+                return;
+            else
+            {
+                Weapon.Attack();
+                Enemy.Hit(equippedWeapon.maxDamage, random);
+            }
+               
+            // If potion is used, remove it from inventory. Not available anymore
+            if (equippedWeapon is IPotion)
+                inventory.Remove(equippedWeapon);
         }
     }
 }
