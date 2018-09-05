@@ -138,6 +138,7 @@ namespace AdventureGame
                 case 8:
                     Application.Exit();
                     break;
+                default: break;
             }
         }
     }
