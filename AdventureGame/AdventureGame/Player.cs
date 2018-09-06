@@ -9,6 +9,7 @@ namespace AdventureGame
 {
     class Player : Mover
     {
+        // fields
         private Weapon equippedWeapon;
 
         public int HitPoints { get; private set; }
@@ -25,12 +26,14 @@ namespace AdventureGame
             }
         }
 
+        // ctor
         public Player(Game game, Point location)
         : base(game, location)
         {
             HitPoints = 10;
         }
 
+        // methods
         public void Hit(int maxDamage, Random random)
         {
             HitPoints -= random.Next(1, maxDamage);

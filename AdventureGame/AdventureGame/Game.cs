@@ -10,6 +10,7 @@ namespace AdventureGame
 {
     class Game
     {
+        // props & fields
         public IEnumerable<Enemy> Enemies { get; private set; }
         public Weapon WeaponInRoom { get; private set; }
 
@@ -23,12 +24,14 @@ namespace AdventureGame
         private Rectangle boundaries;
         public Rectangle Boundaries { get { return boundaries; } }
 
+        // ctor
         public Game(Rectangle boundaries)
         {
             this.boundaries = boundaries;
             player = new Player(this, new Point(boundaries.Left + 10, boundaries.Top + 70));
         }
 
+        // methods
         public void Move(Direction direction, Random random)
         {
             player.Move(direction);
